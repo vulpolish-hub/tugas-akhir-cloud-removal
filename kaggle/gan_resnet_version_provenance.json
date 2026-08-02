@@ -1,0 +1,115 @@
+{
+  "status": "EXACT VERSION COULD NOT BE RETRIEVED",
+  "requested_kaggle_url": "https://www.kaggle.com/code/vulpolish/sen12ms-gan-resnet?scriptVersionId=331684678",
+  "requested_script_version_id": "331684678",
+  "kernel_ref": "vulpolish/sen12ms-gan-resnet",
+  "kernel_id_no": 121527405,
+  "sdk_current_version_number": 17,
+  "default_source": {
+    "path": "C:\\Users\\Vulpolish\\Downloads\\Tugas Akhir\\KAGGLE_PIPELINE_AUDIT\\pulled_gan_resnet\\sen12ms-gan-resnet.ipynb",
+    "file_sha256": "bd09ddfe667e1fd3073673561a0317a62b27bb5f91d9ed28a49504e47f43ccfb",
+    "normalized_code_cell_sha256": "77103b9e763bb1a26478f67fbe18e7c5f94b47f66fe30eeff851af20444d710b"
+  },
+  "attempts": [
+    {
+      "method": "Kaggle SDK GetKernel default",
+      "result": "success",
+      "evidence": "metadata currentVersionNumber=17, source_len=69288 notebook bytes / 55547 normalized code chars",
+      "limitation": "SDK request type has no scriptVersionId field; returns current/default only"
+    },
+    {
+      "method": "Kaggle CLI default pull",
+      "result": "success",
+      "evidence": "KAGGLE_PIPELINE_AUDIT/pulled_gan_resnet/sen12ms-gan-resnet.ipynb",
+      "limitation": "default/latest source only"
+    },
+    {
+      "method": "Kaggle CLI with /17",
+      "result": "success but not version-proving",
+      "evidence": "downloaded file SHA256 equals default latest",
+      "limitation": "metadata does not record requested version; CLI likely ignores extra path component for GetKernel"
+    },
+    {
+      "method": "Kaggle CLI with /331684678",
+      "result": "success but not version-proving",
+      "evidence": "downloaded file SHA256 equals default latest",
+      "limitation": "metadata does not record scriptVersionId; cannot prove exact version"
+    },
+    {
+      "method": "Kaggle CLI with --version/--scriptVersionId",
+      "result": "failed",
+      "evidence": "CLI 2.1.2 reports unrecognized arguments",
+      "limitation": "local CLI lacks version selector for kernels pull"
+    },
+    {
+      "method": "Kaggle REST /api/v1/kernels/pull with scriptVersionId/scriptVersionNumber/version",
+      "result": "failed",
+      "evidence": "HTTP 400 Invalid field for version parameters",
+      "limitation": "endpoint does not accept those fields"
+    },
+    {
+      "method": "Kaggle REST scriptcontent endpoints",
+      "result": "failed",
+      "evidence": "HTTP 404 for /kernels/scriptcontent/331684678 and /download",
+      "limitation": "endpoint unavailable for this private/version id path"
+    },
+    {
+      "method": "Local cache/archive search",
+      "result": "partial",
+      "evidence": "local_old_slug_archive normalized code-cell SHA256 equals default_latest; old slug has same id_no=121527405",
+      "limitation": "no file explicitly identifies scriptVersionId=331684678"
+    }
+  ],
+  "source_summaries": {
+    "default_latest": {
+      "source_label": "default_latest",
+      "path": "C:\\Users\\Vulpolish\\Downloads\\Tugas Akhir\\KAGGLE_PIPELINE_AUDIT\\pulled_gan_resnet\\sen12ms-gan-resnet.ipynb",
+      "exists": true,
+      "file_sha256": "bd09ddfe667e1fd3073673561a0317a62b27bb5f91d9ed28a49504e47f43ccfb",
+      "normalized_code_cell_sha256": "77103b9e763bb1a26478f67fbe18e7c5f94b47f66fe30eeff851af20444d710b",
+      "code_cell_count": 16,
+      "code_char_count": 55547
+    },
+    "cli_version_17_attempt": {
+      "source_label": "cli_version_17_attempt",
+      "path": "C:\\Users\\Vulpolish\\Downloads\\Tugas Akhir\\KAGGLE_PIPELINE_AUDIT\\try_gan_resnet_version_17\\sen12ms-gan-resnet.ipynb",
+      "exists": true,
+      "file_sha256": "bd09ddfe667e1fd3073673561a0317a62b27bb5f91d9ed28a49504e47f43ccfb",
+      "normalized_code_cell_sha256": "77103b9e763bb1a26478f67fbe18e7c5f94b47f66fe30eeff851af20444d710b",
+      "code_cell_count": 16,
+      "code_char_count": 55547
+    },
+    "cli_script_version_id_attempt": {
+      "source_label": "cli_script_version_id_attempt",
+      "path": "C:\\Users\\Vulpolish\\Downloads\\Tugas Akhir\\KAGGLE_PIPELINE_AUDIT\\try_gan_resnet_version_id\\sen12ms-gan-resnet.ipynb",
+      "exists": true,
+      "file_sha256": "bd09ddfe667e1fd3073673561a0317a62b27bb5f91d9ed28a49504e47f43ccfb",
+      "normalized_code_cell_sha256": "77103b9e763bb1a26478f67fbe18e7c5f94b47f66fe30eeff851af20444d710b",
+      "code_cell_count": 16,
+      "code_char_count": 55547
+    },
+    "local_old_slug_archive": {
+      "source_label": "local_old_slug_archive",
+      "path": "C:\\Users\\Vulpolish\\Downloads\\Tugas Akhir\\kaggle_sen12_gan_resnet\\sen12ms-cr-ts-cloud-removal-gan.ipynb",
+      "exists": true,
+      "file_sha256": "326b44518b88596172ac46d8f0838062b13952b0c409ac88bf18ddc4248494ba",
+      "normalized_code_cell_sha256": "77103b9e763bb1a26478f67fbe18e7c5f94b47f66fe30eeff851af20444d710b",
+      "code_cell_count": 16,
+      "code_char_count": 55547
+    },
+    "local_old_slug_current_pull": {
+      "source_label": "local_old_slug_current_pull",
+      "path": "C:\\Users\\Vulpolish\\Downloads\\Tugas Akhir\\kaggle_sen12_gan_current_pull\\sen12ms-cr-ts-cloud-removal-gan.ipynb",
+      "exists": true,
+      "file_sha256": "20f32812bc6faea0a8d1d617e9d26c080f02f66f1c56c7ecacfc2a89a0e88515",
+      "normalized_code_cell_sha256": "4580b30fe5e87f0aa62bafff5902dc2693f2ea3bd7ff56161e371e972dd05e97",
+      "code_cell_count": 16,
+      "code_char_count": 54739
+    }
+  },
+  "minimum_files_needed_from_kaggle": [
+    "The .ipynb exported while viewing scriptVersionId=331684678, or",
+    "the raw source returned by Kaggle for scriptVersionId=331684678, plus",
+    "version metadata showing scriptVersionId=331684678, kernel ref, title, version number/date."
+  ]
+}

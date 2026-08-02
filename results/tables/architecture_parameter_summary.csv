@@ -1,0 +1,4 @@
+component,input_shape,output_shape,total_parameters,trainable_parameters,non_trainable_parameters,parameter_size_mb_fp32
+generator,"(1, 64, 256, 256)","(1, 13, 256, 256)",2248301,2248301,0,8.576587677001953
+resnet_discriminator,"(1, 13, 256, 256)","(1, 1)",1264321,1264321,0,4.823001861572266
+conditional_discriminator,"(1, 29, 256, 256)","(1, 1, 32, 32)",180065,180065,0,0.6868934631347656

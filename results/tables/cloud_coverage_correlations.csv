@@ -1,0 +1,4 @@
+model_key,relationship,pearson_r,p_value,n
+baseline,cloud_fraction_vs_rgb_global_mae_improvement,-0.37586674005487386,7.766929783590247e-08,192
+gan_resnet,cloud_fraction_vs_rgb_global_mae_improvement,-0.365051203428683,1.9289407320249483e-07,192
+conditional,cloud_fraction_vs_rgb_global_mae_improvement,-0.46093488121948967,1.7225942063685183e-11,192

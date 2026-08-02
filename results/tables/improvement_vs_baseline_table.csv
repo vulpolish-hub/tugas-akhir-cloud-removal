@@ -1,0 +1,31 @@
+model_key,model_label,output_kind,metric,baseline_mean,model_mean,absolute_difference_model_minus_baseline,improvement_vs_baseline_percent,better_than_baseline,direction
+gan_resnet,GAN ResNet-like,blended,band13_global_mae,0.00891212834439,0.00969198433274,0.000779855988347,-8.75050221688,False,lebih rendah lebih baik
+conditional,Conditional Patch GAN,blended,band13_global_mae,0.00891212834439,0.00872130995505,-0.000190818389343,2.14110908157,True,lebih rendah lebih baik
+gan_resnet,GAN ResNet-like,blended,band13_global_pearson,0.985052229699,0.981058396929,-0.00399383277022,-0.405443757174,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,band13_global_pearson,0.985052229699,0.985490897541,0.000438667842007,0.0445324449588,True,lebih tinggi lebih baik
+gan_resnet,GAN ResNet-like,blended,band13_global_psnr,38.8757539882,38.3264222393,-0.549331748917,-1.41304461666,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,band13_global_psnr,38.8757539882,39.0659963518,0.190242363568,0.489359932738,True,lebih tinggi lebih baik
+gan_resnet,GAN ResNet-like,blended,band13_global_rmse,0.012667290161,0.0138677134644,0.00120042330337,-9.47655961225,False,lebih rendah lebih baik
+conditional,Conditional Patch GAN,blended,band13_global_rmse,0.012667290161,0.0123721960451,-0.000295094115936,2.32957571971,True,lebih rendah lebih baik
+gan_resnet,GAN ResNet-like,blended,band13_mask_mae,0.0185506402758,0.0212572975114,0.00270665723556,-14.5906405133,False,lebih rendah lebih baik
+conditional,Conditional Patch GAN,blended,band13_mask_mae,0.0185506402758,0.0171125538837,-0.00143808639217,7.75221971201,True,lebih rendah lebih baik
+gan_resnet,GAN ResNet-like,blended,band13_mask_psnr,33.5513267272,31.8203566562,-1.73097007108,-5.15917026219,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,band13_mask_psnr,33.5513267272,34.2169936003,0.66566687302,1.98402548558,True,lebih tinggi lebih baik
+gan_resnet,GAN ResNet-like,blended,mask_pixel_count,8401.4375,8401.4375,0,0,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,mask_pixel_count,8401.4375,8401.4375,0,0,False,lebih tinggi lebih baik
+gan_resnet,GAN ResNet-like,blended,rgb_global_mae,0.00701947341625,0.00766016064759,0.000640687231349,-9.12728339231,False,lebih rendah lebih baik
+conditional,Conditional Patch GAN,blended,rgb_global_mae,0.00701947341625,0.00683465933921,-0.000184814077034,2.63287665718,True,lebih rendah lebih baik
+gan_resnet,GAN ResNet-like,blended,rgb_global_pearson,0.974826262111,0.962482910254,-0.0123433518566,-1.26621043527,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,rgb_global_pearson,0.974826262111,0.975986644613,0.00116038250237,0.119034801121,True,lebih tinggi lebih baik
+gan_resnet,GAN ResNet-like,blended,rgb_global_psnr,42.4440652892,41.8298447746,-0.614220514581,-1.44712932278,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,rgb_global_psnr,42.4440652892,42.6618120603,0.217746771168,0.513020535814,True,lebih tinggi lebih baik
+gan_resnet,GAN ResNet-like,blended,rgb_global_rmse,0.00870709084043,0.00980049883679,0.00109340799636,-12.5576730093,False,lebih rendah lebih baik
+conditional,Conditional Patch GAN,blended,rgb_global_rmse,0.00870709084043,0.008475012403,-0.000232078437422,2.66539584433,True,lebih rendah lebih baik
+gan_resnet,GAN ResNet-like,blended,rgb_global_ssim_legacy_global_statistics,0.979724237128,0.970958205283,-0.00876603184521,-0.894744818287,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,rgb_global_ssim_legacy_global_statistics,0.979724237128,0.980971936804,0.00124769967586,0.127352129158,True,lebih tinggi lebih baik
+gan_resnet,GAN ResNet-like,blended,rgb_global_ssim_standard,0.983602170247,0.977438261299,-0.00616390894776,-0.626666871446,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,rgb_global_ssim_standard,0.983602170247,0.984539572551,0.000937402304227,0.0953029926714,True,lebih tinggi lebih baik
+gan_resnet,GAN ResNet-like,blended,rgb_mask_mae,0.0150885239872,0.0174445584748,0.00235603448765,-15.6147446209,False,lebih rendah lebih baik
+conditional,Conditional Patch GAN,blended,rgb_mask_mae,0.0150885239872,0.0139589377288,-0.00112958625835,7.48639336298,True,lebih rendah lebih baik
+gan_resnet,GAN ResNet-like,blended,rgb_mask_psnr,36.2968485053,34.2093315137,-2.08751699159,-5.75123482493,False,lebih tinggi lebih baik
+conditional,Conditional Patch GAN,blended,rgb_mask_psnr,36.2968485053,36.9843118954,0.687463390069,1.89400297375,True,lebih tinggi lebih baik

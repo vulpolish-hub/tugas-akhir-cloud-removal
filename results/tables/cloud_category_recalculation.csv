@@ -1,0 +1,13 @@
+split,category,category_label,count,percentage,expected_count,count_match,threshold_definition,source_file
+train,empty,Tidak terdeteksi,410,26.692708333333332,410,True,cloud_fraction = 0%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+train,light,Ringan,868,56.510416666666664,868,True,0% < cloud_fraction <= 10%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+train,medium,Sedang,76,4.947916666666667,76,True,10% < cloud_fraction <= 30%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+train,heavy,Berat,182,11.848958333333334,182,True,cloud_fraction > 30%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+validation,empty,Tidak terdeteksi,54,28.125,54,True,cloud_fraction = 0%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+validation,light,Ringan,118,61.458333333333336,118,True,0% < cloud_fraction <= 10%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+validation,medium,Sedang,5,2.6041666666666665,5,True,10% < cloud_fraction <= 30%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+validation,heavy,Berat,15,7.8125,15,True,cloud_fraction > 30%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+test,empty,Tidak terdeteksi,51,26.5625,51,True,cloud_fraction = 0%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+test,light,Ringan,108,56.25,108,True,0% < cloud_fraction <= 10%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+test,medium,Sedang,10,5.208333333333333,10,True,10% < cloud_fraction <= 30%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv
+test,heavy,Berat,23,11.979166666666666,23,True,cloud_fraction > 30%,analysis_outputs_v2/tables/cloud_timestep_conditions.csv

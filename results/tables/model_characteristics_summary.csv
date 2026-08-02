@@ -1,0 +1,9 @@
+Aspek,ResUNet,GAN ResNet-like,Conditional Patch GAN
+Peringkat blended output,Kedua,Ketiga,Pertama
+Kinerja global blended,RGB MAE 0.007019; 13-pita MAE 0.008912,RGB MAE 0.007660; 13-pita MAE 0.009692,RGB MAE 0.006835; 13-pita MAE 0.008721
+Kinerja mask-only blended,RGB MAE 0.015089; 13-pita MAE 0.018551,RGB MAE 0.017445; 13-pita MAE 0.021257,RGB MAE 0.013959; 13-pita MAE 0.017113
+Raw global,RGB MAE 0.023130; 13-pita MAE 0.022437,RGB MAE 0.052549; 13-pita MAE 0.055950,RGB MAE 0.018844; 13-pita MAE 0.020948
+Raw mask-only,RGB MAE 0.017504; 13-pita MAE 0.020163,RGB MAE 0.024880; 13-pita MAE 0.026796,RGB MAE 0.017788; 13-pita MAE 0.020714
+Pengaruh blending,Global RGB 69.65%; global 13-pita 60.28%; mask RGB 13.80%; mask 13-pita 8.00%,Global RGB 85.42%; global 13-pita 82.68%; mask RGB 29.88%; mask 13-pita 20.67%,Global RGB 63.73%; global 13-pita 58.37%; mask RGB 21.53%; mask 13-pita 17.39%
+Kelebihan terukur,Peringkat kedua pada keempat MAE blended,Penurunan akibat blending terbesar pada keempat evaluasi MAE,MAE blended terendah pada keempat evaluasi
+Keterbatasan terukur,Belum memperoleh MAE blended terendah pada keempat evaluasi,MAE raw dan blended tertinggi pada keempat evaluasi,"Raw RGB mask-only 0.017788, sedikit di atas ResUNet 0.017504"

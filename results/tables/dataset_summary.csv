@@ -1,0 +1,23 @@
+category,item,value
+dataset,SEN12MS-CR-TS subset,asiaWest_n
+samples,complete sample keys,1920
+files,total GeoTIFF files,15360
+files,Sentinel-1 files,7680
+files,Sentinel-2 files,7680
+files_per_timestamp,timestamp_0_total_files,3840
+files_per_timestamp,timestamp_1_total_files,3840
+files_per_timestamp,timestamp_2_total_files,3840
+files_per_timestamp,timestamp_3_total_files,3840
+split,train_samples,1536
+split,val_samples,192
+split,test_samples,192
+split,split_seed,42
+split,test_sample_sha256,6151bee4138eb76aee5555f55f4ff6c77d5ed7019725f9fd3f1e712849318eb3
+test_cloud_mask,mask_valid_samples,141
+test_cloud_mask,mask_empty_samples,51
+test_cloud_mask,mean_mask_pixels,8401.4375
+test_cloud_mask,median_mask_pixels,151.0
+test_cloud_mask,max_mask_pixels,65536
+evaluation,mask_threshold,0.5
+evaluation,rgb_indices,"[3, 2, 1]"
+evaluation,blending_formula,"blended = clamp(mask, 0, 1) * raw_prediction + (1 - clamp(mask, 0, 1)) * t0_cloudy"

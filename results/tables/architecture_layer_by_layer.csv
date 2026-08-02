@@ -1,0 +1,102 @@
+component,layer,type,input_shape,output_shape,parameters,kernel_size,stride,padding,dilation,normalization,activation,dropout
+generator,inc.net.0,Conv2d,"(1, 64, 256, 256)","(1, 32, 256, 256)",18432,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,inc.net.1,BatchNorm2d,"(1, 32, 256, 256)","(1, 32, 256, 256)",64,,,,,BatchNorm2d,,none
+generator,inc.net.2,ReLU,"(1, 32, 256, 256)","(1, 32, 256, 256)",0,,,,,,ReLU,none
+generator,inc.net.3,Conv2d,"(1, 32, 256, 256)","(1, 32, 256, 256)",9216,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,inc.net.4,BatchNorm2d,"(1, 32, 256, 256)","(1, 32, 256, 256)",64,,,,,BatchNorm2d,,none
+generator,inc.skip,Conv2d,"(1, 64, 256, 256)","(1, 32, 256, 256)",2048,"(1, 1)","(1, 1)","(0, 0)","(1, 1)",,,none
+generator,inc.act,ReLU,"(1, 32, 256, 256)","(1, 32, 256, 256)",0,,,,,,ReLU,none
+generator,down1.net.0,MaxPool2d,"(1, 32, 256, 256)","(1, 32, 128, 128)",0,,,,,,,none
+generator,down1.net.1.net.0,Conv2d,"(1, 32, 128, 128)","(1, 64, 128, 128)",18432,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,down1.net.1.net.1,BatchNorm2d,"(1, 64, 128, 128)","(1, 64, 128, 128)",128,,,,,BatchNorm2d,,none
+generator,down1.net.1.net.2,ReLU,"(1, 64, 128, 128)","(1, 64, 128, 128)",0,,,,,,ReLU,none
+generator,down1.net.1.net.3,Conv2d,"(1, 64, 128, 128)","(1, 64, 128, 128)",36864,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,down1.net.1.net.4,BatchNorm2d,"(1, 64, 128, 128)","(1, 64, 128, 128)",128,,,,,BatchNorm2d,,none
+generator,down1.net.1.skip,Conv2d,"(1, 32, 128, 128)","(1, 64, 128, 128)",2048,"(1, 1)","(1, 1)","(0, 0)","(1, 1)",,,none
+generator,down1.net.1.act,ReLU,"(1, 64, 128, 128)","(1, 64, 128, 128)",0,,,,,,ReLU,none
+generator,down2.net.0,MaxPool2d,"(1, 64, 128, 128)","(1, 64, 64, 64)",0,,,,,,,none
+generator,down2.net.1.net.0,Conv2d,"(1, 64, 64, 64)","(1, 128, 64, 64)",73728,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,down2.net.1.net.1,BatchNorm2d,"(1, 128, 64, 64)","(1, 128, 64, 64)",256,,,,,BatchNorm2d,,none
+generator,down2.net.1.net.2,ReLU,"(1, 128, 64, 64)","(1, 128, 64, 64)",0,,,,,,ReLU,none
+generator,down2.net.1.net.3,Conv2d,"(1, 128, 64, 64)","(1, 128, 64, 64)",147456,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,down2.net.1.net.4,BatchNorm2d,"(1, 128, 64, 64)","(1, 128, 64, 64)",256,,,,,BatchNorm2d,,none
+generator,down2.net.1.skip,Conv2d,"(1, 64, 64, 64)","(1, 128, 64, 64)",8192,"(1, 1)","(1, 1)","(0, 0)","(1, 1)",,,none
+generator,down2.net.1.act,ReLU,"(1, 128, 64, 64)","(1, 128, 64, 64)",0,,,,,,ReLU,none
+generator,down3.net.0,MaxPool2d,"(1, 128, 64, 64)","(1, 128, 32, 32)",0,,,,,,,none
+generator,down3.net.1.net.0,Conv2d,"(1, 128, 32, 32)","(1, 256, 32, 32)",294912,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,down3.net.1.net.1,BatchNorm2d,"(1, 256, 32, 32)","(1, 256, 32, 32)",512,,,,,BatchNorm2d,,none
+generator,down3.net.1.net.2,ReLU,"(1, 256, 32, 32)","(1, 256, 32, 32)",0,,,,,,ReLU,none
+generator,down3.net.1.net.3,Conv2d,"(1, 256, 32, 32)","(1, 256, 32, 32)",589824,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,down3.net.1.net.4,BatchNorm2d,"(1, 256, 32, 32)","(1, 256, 32, 32)",512,,,,,BatchNorm2d,,none
+generator,down3.net.1.skip,Conv2d,"(1, 128, 32, 32)","(1, 256, 32, 32)",32768,"(1, 1)","(1, 1)","(0, 0)","(1, 1)",,,none
+generator,down3.net.1.act,ReLU,"(1, 256, 32, 32)","(1, 256, 32, 32)",0,,,,,,ReLU,none
+generator,up1.up.0,Upsample,"(1, 256, 32, 32)","(1, 256, 64, 64)",0,,,,,,,none
+generator,up1.up.1,Conv2d,"(1, 256, 64, 64)","(1, 128, 64, 64)",294912,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up1.up.2,BatchNorm2d,"(1, 128, 64, 64)","(1, 128, 64, 64)",256,,,,,BatchNorm2d,,none
+generator,up1.up.3,ReLU,"(1, 128, 64, 64)","(1, 128, 64, 64)",0,,,,,,ReLU,none
+generator,up1.conv.net.0,Conv2d,"(1, 256, 64, 64)","(1, 128, 64, 64)",294912,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up1.conv.net.1,BatchNorm2d,"(1, 128, 64, 64)","(1, 128, 64, 64)",256,,,,,BatchNorm2d,,none
+generator,up1.conv.net.2,ReLU,"(1, 128, 64, 64)","(1, 128, 64, 64)",0,,,,,,ReLU,none
+generator,up1.conv.net.3,Conv2d,"(1, 128, 64, 64)","(1, 128, 64, 64)",147456,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up1.conv.net.4,BatchNorm2d,"(1, 128, 64, 64)","(1, 128, 64, 64)",256,,,,,BatchNorm2d,,none
+generator,up1.conv.skip,Conv2d,"(1, 256, 64, 64)","(1, 128, 64, 64)",32768,"(1, 1)","(1, 1)","(0, 0)","(1, 1)",,,none
+generator,up1.conv.act,ReLU,"(1, 128, 64, 64)","(1, 128, 64, 64)",0,,,,,,ReLU,none
+generator,up2.up.0,Upsample,"(1, 128, 64, 64)","(1, 128, 128, 128)",0,,,,,,,none
+generator,up2.up.1,Conv2d,"(1, 128, 128, 128)","(1, 64, 128, 128)",73728,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up2.up.2,BatchNorm2d,"(1, 64, 128, 128)","(1, 64, 128, 128)",128,,,,,BatchNorm2d,,none
+generator,up2.up.3,ReLU,"(1, 64, 128, 128)","(1, 64, 128, 128)",0,,,,,,ReLU,none
+generator,up2.conv.net.0,Conv2d,"(1, 128, 128, 128)","(1, 64, 128, 128)",73728,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up2.conv.net.1,BatchNorm2d,"(1, 64, 128, 128)","(1, 64, 128, 128)",128,,,,,BatchNorm2d,,none
+generator,up2.conv.net.2,ReLU,"(1, 64, 128, 128)","(1, 64, 128, 128)",0,,,,,,ReLU,none
+generator,up2.conv.net.3,Conv2d,"(1, 64, 128, 128)","(1, 64, 128, 128)",36864,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up2.conv.net.4,BatchNorm2d,"(1, 64, 128, 128)","(1, 64, 128, 128)",128,,,,,BatchNorm2d,,none
+generator,up2.conv.skip,Conv2d,"(1, 128, 128, 128)","(1, 64, 128, 128)",8192,"(1, 1)","(1, 1)","(0, 0)","(1, 1)",,,none
+generator,up2.conv.act,ReLU,"(1, 64, 128, 128)","(1, 64, 128, 128)",0,,,,,,ReLU,none
+generator,up3.up.0,Upsample,"(1, 64, 128, 128)","(1, 64, 256, 256)",0,,,,,,,none
+generator,up3.up.1,Conv2d,"(1, 64, 256, 256)","(1, 32, 256, 256)",18432,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up3.up.2,BatchNorm2d,"(1, 32, 256, 256)","(1, 32, 256, 256)",64,,,,,BatchNorm2d,,none
+generator,up3.up.3,ReLU,"(1, 32, 256, 256)","(1, 32, 256, 256)",0,,,,,,ReLU,none
+generator,up3.conv.net.0,Conv2d,"(1, 64, 256, 256)","(1, 32, 256, 256)",18432,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up3.conv.net.1,BatchNorm2d,"(1, 32, 256, 256)","(1, 32, 256, 256)",64,,,,,BatchNorm2d,,none
+generator,up3.conv.net.2,ReLU,"(1, 32, 256, 256)","(1, 32, 256, 256)",0,,,,,,ReLU,none
+generator,up3.conv.net.3,Conv2d,"(1, 32, 256, 256)","(1, 32, 256, 256)",9216,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+generator,up3.conv.net.4,BatchNorm2d,"(1, 32, 256, 256)","(1, 32, 256, 256)",64,,,,,BatchNorm2d,,none
+generator,up3.conv.skip,Conv2d,"(1, 64, 256, 256)","(1, 32, 256, 256)",2048,"(1, 1)","(1, 1)","(0, 0)","(1, 1)",,,none
+generator,up3.conv.act,ReLU,"(1, 32, 256, 256)","(1, 32, 256, 256)",0,,,,,,ReLU,none
+generator,outc,Conv2d,"(1, 32, 256, 256)","(1, 13, 256, 256)",429,"(1, 1)","(1, 1)","(0, 0)","(1, 1)",,,none
+resnet_discriminator,init_conv.0,Conv2d,"(1, 13, 256, 256)","(1, 64, 128, 128)",40768,"(7, 7)","(2, 2)","(3, 3)","(1, 1)",,,none
+resnet_discriminator,init_conv.1,BatchNorm2d,"(1, 64, 128, 128)","(1, 64, 128, 128)",128,,,,,BatchNorm2d,,none
+resnet_discriminator,init_conv.2,ReLU,"(1, 64, 128, 128)","(1, 64, 128, 128)",0,,,,,,ReLU,none
+resnet_discriminator,init_conv.3,MaxPool2d,"(1, 64, 128, 128)","(1, 64, 64, 64)",0,,,,,,,none
+resnet_discriminator,layer1.net.0,Conv2d,"(1, 64, 64, 64)","(1, 64, 64, 64)",36864,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+resnet_discriminator,layer1.net.1,BatchNorm2d,"(1, 64, 64, 64)","(1, 64, 64, 64)",128,,,,,BatchNorm2d,,none
+resnet_discriminator,layer1.net.2,ReLU,"(1, 64, 64, 64)","(1, 64, 64, 64)",0,,,,,,ReLU,none
+resnet_discriminator,layer1.net.3,Conv2d,"(1, 64, 64, 64)","(1, 64, 64, 64)",36864,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+resnet_discriminator,layer1.net.4,BatchNorm2d,"(1, 64, 64, 64)","(1, 64, 64, 64)",128,,,,,BatchNorm2d,,none
+resnet_discriminator,layer1.skip,Identity,"(1, 64, 64, 64)","(1, 64, 64, 64)",0,,,,,,,none
+resnet_discriminator,layer1.act,ReLU,"(1, 64, 64, 64)","(1, 64, 64, 64)",0,,,,,,ReLU,none
+resnet_discriminator,layer2.net.0,Conv2d,"(1, 64, 64, 64)","(1, 128, 32, 32)",73728,"(3, 3)","(2, 2)","(1, 1)","(1, 1)",,,none
+resnet_discriminator,layer2.net.1,BatchNorm2d,"(1, 128, 32, 32)","(1, 128, 32, 32)",256,,,,,BatchNorm2d,,none
+resnet_discriminator,layer2.net.2,ReLU,"(1, 128, 32, 32)","(1, 128, 32, 32)",0,,,,,,ReLU,none
+resnet_discriminator,layer2.net.3,Conv2d,"(1, 128, 32, 32)","(1, 128, 32, 32)",147456,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+resnet_discriminator,layer2.net.4,BatchNorm2d,"(1, 128, 32, 32)","(1, 128, 32, 32)",256,,,,,BatchNorm2d,,none
+resnet_discriminator,layer2.skip.0,Conv2d,"(1, 64, 64, 64)","(1, 128, 32, 32)",8192,"(1, 1)","(2, 2)","(0, 0)","(1, 1)",,,none
+resnet_discriminator,layer2.skip.1,BatchNorm2d,"(1, 128, 32, 32)","(1, 128, 32, 32)",256,,,,,BatchNorm2d,,none
+resnet_discriminator,layer2.act,ReLU,"(1, 128, 32, 32)","(1, 128, 32, 32)",0,,,,,,ReLU,none
+resnet_discriminator,layer3.net.0,Conv2d,"(1, 128, 32, 32)","(1, 256, 16, 16)",294912,"(3, 3)","(2, 2)","(1, 1)","(1, 1)",,,none
+resnet_discriminator,layer3.net.1,BatchNorm2d,"(1, 256, 16, 16)","(1, 256, 16, 16)",512,,,,,BatchNorm2d,,none
+resnet_discriminator,layer3.net.2,ReLU,"(1, 256, 16, 16)","(1, 256, 16, 16)",0,,,,,,ReLU,none
+resnet_discriminator,layer3.net.3,Conv2d,"(1, 256, 16, 16)","(1, 256, 16, 16)",589824,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none
+resnet_discriminator,layer3.net.4,BatchNorm2d,"(1, 256, 16, 16)","(1, 256, 16, 16)",512,,,,,BatchNorm2d,,none
+resnet_discriminator,layer3.skip.0,Conv2d,"(1, 128, 32, 32)","(1, 256, 16, 16)",32768,"(1, 1)","(2, 2)","(0, 0)","(1, 1)",,,none
+resnet_discriminator,layer3.skip.1,BatchNorm2d,"(1, 256, 16, 16)","(1, 256, 16, 16)",512,,,,,BatchNorm2d,,none
+resnet_discriminator,layer3.act,ReLU,"(1, 256, 16, 16)","(1, 256, 16, 16)",0,,,,,,ReLU,none
+resnet_discriminator,gap,AdaptiveAvgPool2d,"(1, 256, 16, 16)","(1, 256, 1, 1)",0,,,,,,,none
+resnet_discriminator,fc,Linear,"(1, 256)","(1, 1)",257,,,,,,,none
+conditional_discriminator,blocks.0.0,Conv2d,"(1, 29, 256, 256)","(1, 32, 128, 128)",14880,"(4, 4)","(2, 2)","(1, 1)","(1, 1)",,,none
+conditional_discriminator,blocks.0.1,LeakyReLU,"(1, 32, 128, 128)","(1, 32, 128, 128)",0,,,,,,LeakyReLU(0.2),none
+conditional_discriminator,blocks.1.0,Conv2d,"(1, 32, 128, 128)","(1, 64, 64, 64)",32832,"(4, 4)","(2, 2)","(1, 1)","(1, 1)",,,none
+conditional_discriminator,blocks.1.1,LeakyReLU,"(1, 64, 64, 64)","(1, 64, 64, 64)",0,,,,,,LeakyReLU(0.2),none
+conditional_discriminator,blocks.2.0,Conv2d,"(1, 64, 64, 64)","(1, 128, 32, 32)",131200,"(4, 4)","(2, 2)","(1, 1)","(1, 1)",,,none
+conditional_discriminator,blocks.2.1,LeakyReLU,"(1, 128, 32, 32)","(1, 128, 32, 32)",0,,,,,,LeakyReLU(0.2),none
+conditional_discriminator,head,Conv2d,"(1, 128, 32, 32)","(1, 1, 32, 32)",1153,"(3, 3)","(1, 1)","(1, 1)","(1, 1)",,,none

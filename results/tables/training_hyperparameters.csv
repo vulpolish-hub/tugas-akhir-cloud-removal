@@ -1,0 +1,34 @@
+model_key,model_name,parameter,value
+baseline,Baseline Multi-Temporal ResUNet,split_seed,42
+baseline,Baseline Multi-Temporal ResUNet,mask_threshold,0.5
+baseline,Baseline Multi-Temporal ResUNet,blending_mask_type,soft mask
+baseline,Baseline Multi-Temporal ResUNet,best_metric_name,val_model_cloud_mae
+baseline,Baseline Multi-Temporal ResUNet,best_validation_metric,0.011147152283228934
+baseline,Baseline Multi-Temporal ResUNet,checkpoint_epoch,49
+baseline,Baseline Multi-Temporal ResUNet,optimizer_state_available,True
+baseline,Baseline Multi-Temporal ResUNet,scheduler_state_available,True
+baseline,Baseline Multi-Temporal ResUNet,warm_start_baseline_sha256,
+baseline,Baseline Multi-Temporal ResUNet,training_from_scratch,
+baseline,Baseline Multi-Temporal ResUNet,training_discriminator_fake_input,
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,split_seed,42
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,mask_threshold,0.5
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,blending_mask_type,soft mask
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,best_metric_name,val_model_cloud_mae
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,best_validation_metric,0.012980088737094775
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,checkpoint_epoch,71
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,optimizer_state_available,True
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,scheduler_state_available,True
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,warm_start_baseline_sha256,
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,training_from_scratch,
+gan_resnet,GAN Multi-Temporal ResUNet dengan Custom ResNet-like Discriminator,training_discriminator_fake_input,blended output
+conditional,Conditional GAN dengan Patch Discriminator,split_seed,42
+conditional,Conditional GAN dengan Patch Discriminator,mask_threshold,0.5
+conditional,Conditional GAN dengan Patch Discriminator,blending_mask_type,soft mask
+conditional,Conditional GAN dengan Patch Discriminator,best_metric_name,val_model_cloud_mae
+conditional,Conditional GAN dengan Patch Discriminator,best_validation_metric,0.010494126074869806
+conditional,Conditional GAN dengan Patch Discriminator,checkpoint_epoch,13
+conditional,Conditional GAN dengan Patch Discriminator,optimizer_state_available,False
+conditional,Conditional GAN dengan Patch Discriminator,scheduler_state_available,False
+conditional,Conditional GAN dengan Patch Discriminator,warm_start_baseline_sha256,9177ef6baec441ffcd78bb4b232cf066a5f8bf75be76bd822a5da19352e65303
+conditional,Conditional GAN dengan Patch Discriminator,training_from_scratch,False
+conditional,Conditional GAN dengan Patch Discriminator,training_discriminator_fake_input,raw prediction

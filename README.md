@@ -1,81 +1,66 @@
-# Pembersihan Awan Citra Satelit Multi-Temporal Menggunakan Model ResUNet dan GAN (Studi Kasus: asiaWest_n)
+# Restorasi Citra Satelit Berawan SEN12MS-CR-TS
 
-Repositori ini dikembangkan untuk mendokumentasikan kode pemrograman, alur preprocessing, pelatihan model, serta evaluasi dalam pengerjaan Tugas Akhir mengenai restorasi citra satelit Sentinel-2 yang tertutup awan dengan bantuan radar Sentinel-1 pada wilayah Asia Barat (`asiaWest_n`).
+Repository ini berisi artefak inti Tugas Akhir mengenai restorasi citra Sentinel-2 berawan menggunakan **Multi-Temporal ResUNet** dan dua skema GAN:
 
----
+1. Baseline Multi-Temporal ResUNet
+2. GAN dengan Custom ResNet-like Discriminator
+3. GAN dengan Conditional Patch Discriminator
 
-## 1. Mengapa Penulis Memilih Pendekatan & Model Ini?
+Isi repository dikurasi dari sumber kanonik dan artefak final yang dipakai dalam laporan. Dataset mentah dan checkpoint tidak disimpan di GitHub.
 
-Restorasi citra satelit dari tutupan awan tebal merupakan tantangan besar dalam penginderaan jauh optik. Penelitian ini menerapkan fusi data multi-sensor dan deep learning dengan alasan logis berikut:
+## Dokumen Utama
 
-### A. Fusi Multi-Sensor (Sentinel-1 SAR + Sentinel-2 Optik)
-* **Sentinel-2 (Optik)** sangat rentan terhadap tutupan awan, sehingga sering kali kehilangan informasi spektral permukaan bumi.
-* **Sentinel-1 (Radar SAR / Synthetic Aperture Radar)** menggunakan gelombang mikro yang mampu menembus awan dalam kondisi cuaca apa pun. Data SAR memberikan informasi geometri permukaan bumi yang konsisten sebagai pemandu rekonstruksi citra optik yang hilang.
+- [Laporan Tugas Akhir final](report/Laporan_Tugas_Akhir_Final.docx)
+- [Baseline Multi-Temporal ResUNet](notebooks/01_baseline_multitemporal_resunet.ipynb)
+- [GAN ResNet-like](notebooks/02_gan_resnet_like.ipynb)
+- [Conditional Patch GAN](notebooks/03_conditional_patch_gan.ipynb)
+- [Tautan notebook Kaggle dan dataset](kaggle/KAGGLE_LINKS.md)
+- [Audit provenance model](audit/MODEL_PROVENANCE.md)
+- [Audit formula loss](audit/LOSS_FORMULA_LITERATURE_AUDIT.md)
 
-### B. Arsitektur Multi-Temporal ResUNet
-* **Arsitektur U-Net** memiliki struktur encoder-decoder dengan *skip-connections* yang sangat baik dalam menjaga detail spasial frekuensi tinggi (seperti bentuk jalan, batas lahan, dan struktur pemukiman) dari input ke output.
-* **Residual Blocks (ResNet)** ditambahkan untuk mencegah masalah hilangnya gradien (*vanishing gradient*) pada jaringan yang dalam. Ini mempermudah konvergensi model saat memproses input kompleks berukuran besar (tensor fusi 64-channel).
-* **Pendekatan Multi-Temporal** memanfaatkan deret waktu perekaman citra (4 tanggal berbeda) agar model dapat mempelajari perubahan temporal bumi guna mengisi area berawan secara konsisten.
+## Dataset
 
-### C. Pendekatan Generative Adversarial Network (GAN)
-* Pelatihan model secara *supervised* menggunakan fungsi loss standar (seperti L1/L2 Loss) cenderung menghasilkan citra yang agak kabur (*blurry*). Hal ini dikarenakan loss matematis tersebut meminimalkan rata-rata kesalahan piksel (efek *regression-to-the-mean*).
-* **GAN** memecahkan masalah ini dengan menambahkan **Adversarial Loss** (Hinge Loss) melalui Diskriminator. Diskriminator memaksa Generator untuk memproduksi visual yang tajam, realistis, dan detail, bukan sekadar nilai rata-rata piksel yang kabur.
-* **ResNet-18 dengan Spectral Normalization** digunakan pada Diskriminator untuk membatasi konstanta Lipschitz jaringan, sehingga menjaga stabilitas pelatihan adversarial dan menghindari terjadinya *mode collapse*.
+SEN12MS-CR-TS dapat diperoleh dari:
 
----
+- [Kaggle mirror - SEN12MS-CR-TS](https://www.kaggle.com/datasets/mahmoud7abib/sen12mscrts)
+- [Halaman proyek resmi SEN12MS-CR-TS](https://patricktum.github.io/cloud_removal/sen12mscrts/)
 
-## 2. Alur dan Urutan Langkah Eksperimen
+Dataset tidak disertakan karena ukurannya besar. Struktur input penelitian menggunakan empat timestep Sentinel-2, empat timestep Sentinel-1, skor indikasi awan temporal, dan pseudo ground truth temporal.
 
-Pengerjaan penelitian ini dilakukan secara runut melalui 4 tahap utama yang direpresentasikan oleh 4 notebook di dalam repositori ini:
+## Ringkasan Hasil Final
 
-```mermaid
-graph TD
-    A[dataset_preprocessing_info.ipynb] -->|1. Fusi Data & Ekstraksi Input 64-Channel| B[sen12ms-cr-ts-cloud-removal-eda-baseline-unet.ipynb]
-    A -->|1. Fusi Data & Ekstraksi Input 64-Channel| C[sen12ms-cr-ts-cloud-removal-gan.ipynb]
-    B -->|2. Pelatihan Supervised L1+Grad| D[model_evaluation_inference.ipynb]
-    C -->|3. Pelatihan Adversarial GAN| D
-    D -->|4. Evaluasi Kualitatif & Kuantitatif + Paired t-Test| E[Laporan & Makalah Akhir]
+Evaluasi terpadu menggunakan 192 sampel test untuk metrik global dan 141 sampel dengan piksel mask-valid untuk metrik mask-only.
+
+| Model | RGB global MAE | RGB mask MAE | RGB global PSNR |
+|---|---:|---:|---:|
+| Baseline Multi-Temporal ResUNet | 0.007019 | 0.015089 | 42.4441 |
+| GAN ResNet-like | 0.007660 | 0.017445 | 41.8298 |
+| Conditional Patch GAN | 0.006835 | 0.013959 | 42.6618 |
+
+Hasil statistik final menggunakan Friedman, Wilcoxon signed-rank berpasangan, dan koreksi Holm. Tabel lengkap tersedia di [`results/tables/`](results/tables/).
+
+## Struktur Repository
+
+```text
+notebooks/          tiga notebook model kanonik
+report/             laporan Word final
+kaggle/             tautan run Kaggle dan provenance versi
+results/tables/     tabel evaluasi dan statistik final
+results/figures/    visualisasi analisis, ROI, dan sampel penuh
+results/training/   training history dan kurva yang tersedia
+audit/              audit formula, konflik, output hilang, dan source mapping
+SHA256SUMS.txt      checksum semua artefak repository
 ```
 
-### Langkah 1: Preprocessing Spasial & Pembuatan Input (`dataset_preprocessing_info.ipynb`)
-* **Tujuan**: Mempersiapkan data mentah dari satelit Sentinel-1 dan Sentinel-2 agar siap dimasukkan ke model deep learning.
-* **Proses**:
-  * Melakukan normalisasi data Sentinel-2 (dibagi 10000.0) dan Sentinel-1 (skala linear desibel).
-  * Membuat peta probabilitas awan (Cloud Probability Map) berbasis informasi spektral dan temporal.
-  * Menggabungkan seluruh saluran tersebut menjadi tensor masukan berukuran `[64, 256, 256]` (13 band S2 + 2 band S1 + 1 band Cloud Map x 4 tanggal temporal).
+## Catatan Reproduksibilitas
 
-### Langkah 2: Pelatihan Model Baseline ResUNet (`sen12ms-cr-ts-cloud-removal-eda-baseline-unet.ipynb`)
-* **Tujuan**: Melatih model pembanding (Baseline) berbasis rekonstruksi piksel langsung.
-* **Proses**:
-  * Melatih generator Multi-Temporal ResUNet di Kaggle menggunakan kombinasi L1 Loss (MAE) dan Gradient Loss untuk memulihkan piksel secara matematis.
-  * Model ini menghasilkan akurasi piksel spektral tertinggi (~98.9%), namun citra rekonstruksinya cenderung agak halus/kabur di bawah awan tebal.
+- Split menggunakan seed 42 dan test-sample SHA256 `6151bee4138eb76aee5555f55f4ff6c77d5ed7019725f9fd3f1e712849318eb3`.
+- Checkpoint dipilih berdasarkan metrik validasi, bukan metrik test.
+- Pseudo ground truth bukan citra bebas awan aktual pada waktu yang sama.
+- Istilah *skor indikasi awan* tidak berarti probabilitas statistik terkalibrasi.
+- Snapshot GAN ResNet adalah sumber kanonik yang direferensikan; keterbatasan verifikasi versi historis dicatat di [`kaggle/gan_resnet_version_provenance.json`](kaggle/gan_resnet_version_provenance.json).
+- Checkpoint dan dataset tidak disertakan. Hash checkpoint final tersedia dalam audit provenance.
 
-### Langkah 3: Pelatihan Model GAN (`sen12ms-cr-ts-cloud-removal-gan.ipynb`)
-* **Tujuan**: Melatih model berbasis generative adversarial untuk mengembalikan ketajaman visual permukaan bumi.
-* **Proses**:
-  * Melatih Generator (Multi-Temporal ResUNet) bersama Diskriminator (ResNet-18 dengan Spectral Normalization) di Kaggle menggunakan gabungan Adversarial Hinge Loss, L1 Loss, dan Gradient Loss.
-  * Model ini menghasilkan visual spasial yang jauh lebih tajam dan realistis (tekstur sawah, pemukiman, dan jalan pulih dengan baik).
+## Integritas
 
-### Langkah 4: Evaluasi Statistik & Inferensi (`model_evaluation_inference.ipynb`)
-* **Tujuan**: Menganalisis hasil dari kedua model secara ilmiah dan objektif untuk bahan sidang/laporan.
-* **Proses**:
-  * Menghitung metrik performa: MAE, RMSE, PSNR, SSIM, dan Korelasi Pearson.
-  * Melakukan **Uji t Berpasangan (Paired t-test)** untuk menguji signifikansi perbedaan performa kedua model.
-  * Menganalisis *Perception-Distortion Trade-Off* di mana Baseline unggul secara metrik numerik (~0.2% lebih akurat), tetapi GAN jauh lebih unggul dalam persepsi visual manusia (tidak kabur).
-
----
-
-## 3. Dokumen Hasil Akhir
-
-Selain kode program, repositori ini juga memuat dokumen resmi Tugas Akhir yang telah diselesaikan:
-1. **`Laporan dari Penyuka Idol Banyak Makan.docx`**: Buku Laporan Tugas Akhir lengkap (berisi Bab I sampai Bab V, grafik kurva pelatihan, serta seluruh 32 Lampiran kode pemrograman dan visualisasi).
-2. **`Makalah dari Penyuka Idol Banyak Makan.docx`**: Naskah ringkas Artikel Ilmiah / Makalah (6-8 halaman) yang siap disubmit untuk publikasi jurnal atau prosiding seminar.
-
----
-
-## Ucapan Terima Kasih (Acknowledgements)
-
-Penulis menyampaikan rasa terima kasih dan penghargaan yang setinggi-tingginya kepada pihak-pihak yang telah mendukung penyelesaian Tugas Akhir ini:
-* **Ibu Dr. Dra. Kartika Fithriasari, M.Si.** selaku Dosen Pembimbing, atas arahan, bimbingan, kesabaran, dan masukan berharga sepanjang pengerjaan penelitian ini.
-* **Bapak Prof. NUR Iriawan, M.Ikomp, Ph.D** dan **Ibu Tintrim Dwi Ary Widhianingsih, S.Si, M.Stat, Ph.D** selaku Dosen Penguji, atas kritik, saran, koreksi, dan masukan yang sangat bermanfaat untuk penyempurnaan Tugas Akhir ini.
-* **Fikri** selaku sahabat dekat, yang secara khusus penulis ucapkan terima kasih karena telah berbaik hati memfasilitasi kediaman/tempat berkumpul untuk pengerjaan Tugas Akhir ini hingga penulis menginap berhari-hari demi menyelesaikan penelitian ini.
+Gunakan `SHA256SUMS.txt` untuk memverifikasi byte seluruh file yang dipublikasikan. Konflik sumber dan output yang tidak tersedia dicatat secara terbuka pada [`audit/CONFLICT_LOG.md`](audit/CONFLICT_LOG.md) dan [`audit/MISSING_OUTPUTS.md`](audit/MISSING_OUTPUTS.md).
